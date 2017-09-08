@@ -113,12 +113,12 @@ extension AACoreData {
         return NSEntityDescription.insertNewObject(forEntityName: entityName._entity, into: managedObjectContext)
         
     }
-    open func fetchRecords(entityName: AACoreDataEntity<String>, predicate: String? = nil, sortDescriptors: [NSSortDescriptor]? = nil, completion: @escaping (_ records: Any?) -> ()) {
+    open func fetchRecords(entityName: AACoreDataEntity<String>, predicate: NSPredicate? = nil, sortDescriptors: [NSSortDescriptor]? = nil, completion: @escaping (_ records: Any?) -> ()) {
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName._entity)
         
-        if let string = predicate {
-            fetchRequest.predicate = NSPredicate(format: string)
+        if let _predicate = predicate {
+            fetchRequest.predicate = _predicate
         }
         
         fetchRequest.sortDescriptors = sortDescriptors
